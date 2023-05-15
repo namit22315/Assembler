@@ -117,7 +117,7 @@ def error1(l):
                 error12.append(f"Error in line {l[1]}: operand 0 is not a correct register name")
             if p[1] not in v.keys():
                 
-                error12.append("variable not declared")
+                error12.append(f"variable {l[0][2]} not declared")
     if l[0][0] in ["div","not","cmp"]:
         if len(l[0]) !=3:
             
