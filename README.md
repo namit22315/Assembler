@@ -42,7 +42,7 @@
          it, and save the machine code to the output file.
 
 # 5. Supported Instructions
-`        The Assembler program supports a subset of assembly instructions. Here is a list of the supported instructions:
+        The Assembler program supports a subset of assembly instructions. Here is a list of the supported instructions:
 
         LOAD - Load a value into a register
         STORE - Store a value from a register into memory
@@ -63,4 +63,4 @@
         OR - Performs bitwise OR of reg2 and reg3. Stores the result in reg1.
         AND - Performs bitwise AND of reg2 and reg3. Stores the result in reg1.
         Invert - Performs bitwise NOT of reg2. Stores the result in reg1.
-        HALT - Stops the machine from executing until reset.`
+        HALT - Stops the machine from executing until reset.
