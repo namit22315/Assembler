@@ -27,7 +27,7 @@
 # 3. Prerequisites
         To run this Assembler program, you need to have the following software installed on your system:
 
-        Python (version 3.6 or higher)
+        `Python (version 3.6 or higher)`
 
 # 4. Usage
         (i) Clone the repository or download the source code files.
