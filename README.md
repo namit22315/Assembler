@@ -1,9 +1,20 @@
 # Assembler
-        An assembler is a software tool or program that translates assembly language code into machine code, which can be directly executed by a computer's processor. It plays a vital role in the development of low-level software and system programming, as it bridges the gap between human-readable assembly instructions and the binary representations understood by the hardware.
+        An assembler is a software tool or program that translates assembly 
+        language code into machine code, which can be directly executed by 
+        a computer's processor. It plays a vital role in the development of
+        low-level software and system programming, as it bridges the gap 
+        between human-readable assembly instructions and the binary
+         representations understood by the hardware.
 
-        Assembly language is a low-level programming language that closely corresponds to the machine language instructions of a specific computer architecture. It uses mnemonic codes to represent individual instructions, memory addresses, and data operands. Assembly language provides a more human-readable and manageable alternative to working directly with binary machine code.
+        Assembly language is a low-level programming language that closely 
+        corresponds to the machine language instructions of a specific 
+        computer architecture. It uses mnemonic codes to represent individual 
+        instructions, memory addresses, and data operands. Assembly language 
+        provides a more human-readable and manageable alternative to working 
+        directly with binary machine code.
 
-        The assembler reads the assembly code, processes each instruction, and generates the corresponding machine code
+        The assembler reads the assembly code, processes each instruction, 
+        and generates the corresponding machine code
 
 # Table of Contents:
         1. Contributions
@@ -17,7 +28,7 @@
         (i) Namit Jain (2022315)
         (ii) Prayag Parashar (2022377)
         (iii) Naman Jindal (2022311)
-        (iv) Niteen Kumar (20223xx)
+        (iv) Niteen Kumar (2022336)
 
 # 2. Introduction
         The Assembler program is designed to convert assembly language instructions into 
