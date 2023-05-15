@@ -42,8 +42,9 @@
          it, and save the machine code to the output file.
 
 # 5. Supported Instructions
-        The Assembler program supports a subset of assembly instructions. Here is a list of the supported instructions:
-
+        The Assembler program supports a subset of assembly instructions. 
+        
+        Here is a list of the supported instructions:
         LOAD - Load a value into a register
         STORE - Store a value from a register into memory
         ADD - Add two values and store the result in a register
