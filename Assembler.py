@@ -1,7 +1,3 @@
-a="input.txt"
-line = 0
-error_in_prog=False
-wer=""
 op = {"add": '00000',
       "sub": '00000',
       "mov": '0001100000',
@@ -33,12 +29,19 @@ reg = {'R0': ['000', 0],
        'FLAGS': ['111', 0]}
 z=0
 statements={}
-with open(a,"r") as f:
-    for i in f:
-        if len(i.split())!=0:
+
+while (1):
+    try:
+        line = input()
+        line=line.strip()
+        if (line != ""):
             
-            statements[z]=[i.split(),z]
-            z+=1
+                
+            statements[z] = [line.split(), z]
+            z+= 1
+    except EOFError:
+        break
+
 
 error12=[]
 
@@ -66,30 +69,30 @@ def check_digit (l) :
           for j in l[i][0]:
                if j[0]=="$":
                     if str(j[1::]).isdigit()==False:
-                         error12.append(f"error at line {l[i][1]} : {j} is not an integer")
+                         error12.append(f"Error in line {l[i][1]} : {j} is not an integer")
      
 
 def invalid_op(l):
     x = len(l) - 1
     for i in range (x+1):
         if l[i][0][0] not in op.keys() and l[i][0][0] != "var":
-            error12.append(f"error at line {l[i][1]} : invalid operand")
+            error12.append(f"Error in line {l[i][1]} : invalid operand")
 
 
 def error1(l):
     if l[0][0] in ["add", "sub", "mul", "xor", "or", "and"]:
         if (len(l[0])) !=4:
-            error12.append(f"Error in line{l[1]}: {l[0][0]} must contain 3 parameters")
+            error12.append(f"Error in line {l[1]} : {l[0][0]} must contain 3 parameters")
         
         else:
             p=l[0][1:]
             for i in range(len(p)):
                 if p[i] not in reg.keys():
-                    error12.append(f"Error in line {l[1]}: operand {i} is not a correct register name")
+                    error12.append(f"Error in line {l[1]} : operand {i} is not a correct register name")
                    
     if l[0][0] == "mov":
         if len(l[0]) != 3:
-            error12.append(f"Error in line{l[1]}: {l[0][0]} must contain 2 parameters")
+            error12.append(f"Error in line {l[1]} : {l[0][0]} must contain 2 parameters")
             
         else:
             p=l[0][1:]
@@ -105,58 +108,62 @@ def error1(l):
                 for i in range(len(p)):
                     if p[i] not in reg.keys():
                         
-                        error12.append(f"Error in line {l[1]}: {l[0][2]} is not a correct register name")
+                        error12.append(f"Error in line {l[1]} : {l[0][2]} is not a correct register name")
     if l[0][0] in ["ld","st"]:
         if len(l[0]) !=3:
            
-            error12.append(f"Error in line {l[1]}: {l[0][0]} must contain 2 parameters")
+            error12.append(f"Error in line {l[1]} : {l[0][0]} must contain 2 parameters")
         else:
             p=l[0][1:]
             if p[0] not in reg.keys():
                
-                error12.append(f"Error in line {l[1]}: operand 0 is not a correct register name")
+                error12.append(f"Error in line {l[1]} : operand 0 is not a correct register name")
             if p[1] not in v.keys():
                 
                 error12.append("variable not declared")
     if l[0][0] in ["div","not","cmp"]:
         if len(l[0]) !=3:
             
-            error12.append(f"Error in line {l[1]}: {l[0][0]} must contain 2 parameters")
+            error12.append(f"Error in line {l[1]} : {l[0][0]} must contain 2 parameters")
         else:
             p=l[0][1:]
             for i in range(len(p)):
                 if p[i] not in reg.keys():
                    
-                    error12.append(f"Error in line {l[1]}: operand is not a correct register name")
+                    error12.append(f"Error in line {l[1]} : operand is not a correct register name")
     if l[0][0] in ["rs","ls"]:
         if len(l[0]) !=3:
             
-            error12.append(f"Error in line {l[1]}: {l[0][0]} must contain 2 parameters")
+            error12.append(f"Error in line {l[1]} : {l[0][0]} must contain 2 parameters")
         else:
             p=l[0][1:]
             if p[0] not in reg.keys():
                 
-                error12.append(f"Error in line {l[1]}: operand is not a correct register name")
+                error12.append(f"Error in line {l[1]} : operand is not a correct register name")
             if p[1][0] != "$":
                 
-                error12.append(f"Error in line {l[1]}: operand 1 is not a correct immediate value")
+                error12.append(f"Error in line {l[1]} : operand 1 is not a correct immediate value")
             elif p[1][0] == "$" and p[1][1:].isdigit()==False:
                
-                error12.append("no integer value is provided")
-    # if l[0][0] != "hlt":
-    #     error12.append("Missing halt statement")  
-    # if (l[0][0] == "hlt" and l[0][0] != len(statements) - 1):
-        
-    #    error12.append("More than one hlt statement at line ") 
+                error12.append("Error in line {l[1]} : o integer value is provided")
+
+    
+
 
 
 def solve (l):
-     for i  in range (len(l)) :
-          if l[i][0][0] in ["jmp" , "jgt" , "jlt"  , "je"] :
-               if l[i][0][1]  in labels.keys():
-                    break
-     else:
-          error12.append(f"error at line {l[i][1]} : Missing label")
+    
+    sol=False
+    for i  in range (len(l)) :
+        if l[i][0][0] in ["jmp" , "jgt" , "jlt"  , "je"] :
+            if l[i][0][1]  in labels.keys():
+                sol=True
+                break
+            else:
+                 sol=False
+        if  not sol and l[i][0][0] in ["jmp" , "jgt" , "jlt"  , "je"] :
+            error12.append(f"Error at line {l[i][1]} : Missing label")
+        
 
 
 def hlt_error (l) :
@@ -469,7 +476,15 @@ for i in v.keys():
     v[i] = [convert(len(statements) - len(v) + k), ""]
     k += 1
 
+# Define a function that extracts the line number from each error string
+def get_line_number(error_string):
+    return int(error_string.split()[3])
+
+
+
 # ************************error checking *********************************
+
+
 spaceerror() # functio to check if multiple spaces are entered
 checkr()    # to check if variables are decleared after an instruction of some opcode is given
 check_digit(statements)
@@ -481,11 +496,16 @@ for i in statements.keys():
 
 hlt_error(statements)
 
+
 if len(error12) != 0:
-    with open("output.txt",'w') as file:
-        for j in range(len(error12)):
-            file.write(error12[j])
-            file.write("\n")
+
+
+# Print the sorted list
+
+    for error in  range(len(error12)):
+        print(error12[error])
+        if error != len(error12) - 1:
+            print("\n")
 
 
 
@@ -509,33 +529,9 @@ else:
         
             main([statements[prog_count][0][1::]])
     
-    with open("output.txt",'w') as file:
-        for j in range(len(ret)):
-            file.write(ret[j])
-            file.write("\n")
-
-
-
-
-
-
-
-
-
-#add this part before main
-
-# error()
-# if len(wer)==0:
-#     print("No Errors Found")
-# else:
-#     print(wer)
-#     exit(0)
-
-
-
-
-
-# #output error
-# with open("output.txt",'w') as file:
-#         for j in range(len(wer)):
-#             file.write(wer)
+    
+    for j in range(len(ret)):
+        print(ret[j])
+        if j != len(ret)-1:
+             print("\n")
+       
