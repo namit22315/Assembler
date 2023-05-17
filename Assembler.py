@@ -38,7 +38,7 @@ while (1):
             
                 
             statements[z] = [line.split(), z]
-            z+= 1
+            z += 1
     except EOFError:
         break
 
@@ -120,9 +120,9 @@ def error1(l):
                 error12.append(f"Error in line {l[1]} : operand 0 is not a correct register name")
             if p[1] not in v.keys():
                 
-                error12.append("variable not declared")
+                error12.append(f"error in line {l[1]} : No variable named {p[1]}")
     if l[0][0] in ["div","not","cmp"]:
-        if len(l[0]) !=3:
+        if len(l[0]) != 3:
             
             error12.append(f"Error in line {l[1]} : {l[0][0]} must contain 2 parameters")
         else:
@@ -171,7 +171,7 @@ def hlt_error (l) :
     count = 0
     for i in range (x+1):
          if l[i][0][0] == "hlt" :
-              count+= 1
+              count += 1
 
     if count > 1 :
          error12.append("more than one halt statement")
@@ -432,7 +432,7 @@ v = {}
 for i in statements.keys():
     if (statements[i][0][0] == 'var'):
         if (len(statements[i][0]) == 1):
-            error12.append(f"error in line {statements[i][1]} : No variable declared")
+            error12.append(f"error in line {statements[i][1]} : No variable name {statements[i][0]}")
             # wer+="Invalid Instruction at line "+str(statements[i][1])+"\n"
             # print("Invalid Instruction at line "+str(statements[i][1]))
 #            exit(0)
