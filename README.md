@@ -51,7 +51,7 @@
                 python assembler.py
 ```
         (iv)The program will read the assembly code from the terminal, assemble
-        it, and print the output on yje terminal.
+        it, and print the output on the terminal.
 
 # 5. Supported Instructions
         The Assembler program supports a subset of assembly instructions. 
