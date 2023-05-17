@@ -48,12 +48,10 @@
         (ii) Open a terminal or command prompt and navigate to the program's directory.
         (iii) Run the program using the following command:
 ```python
-                python assembler.py input.txt
+                python assembler.py
 ```
-        Replace input_file.asm with the path to your assembly code file and output_file.mc
-         with the desired filename for the generated machine code.
-        (iv)The program will read the assembly code from the input file, assemble
-         it, and save the machine code to the output file.
+        (iv)The program will read the assembly code from the terminal, assemble
+        it, and print the output on yje terminal.
 
 # 5. Supported Instructions
         The Assembler program supports a subset of assembly instructions. 
