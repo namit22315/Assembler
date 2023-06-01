@@ -78,7 +78,11 @@ def invalid_op(l):
         if l[i][0][0] not in op.keys() and l[i][0][0] != "var":
             error12.append(f"Error in line {l[i][1]} : invalid operand")
 
-
+def check_flg (l):
+     for i in range(len(l)):
+          if l[i][0][0] != 'mov':
+               if "FLAGS" in l[i][0]:
+                    error12.append(f"Error in line {l[i][1]} : illegal use of flags")
 def error1(l):
     if l[0][0] in ["add", "sub", "mul", "xor", "or", "and"]:
         if (len(l[0])) !=4:
@@ -490,7 +494,7 @@ checkr()    # to check if variables are decleared after an instruction of some o
 check_digit(statements)
 solve (statements)
 invalid_op(statements)
-
+check_flg(statements)
 for i in statements.keys():
     error1(statements[i])
 
